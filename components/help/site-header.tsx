@@ -4,9 +4,9 @@ import { SearchDialog } from '@/components/help/search-dialog'
 import { ThemeToggle } from '@/components/help/theme-toggle'
 
 const nav = [
-  { label: 'Help Center', href: '/' },
-  { label: 'Contact', href: '/contact' },
-  { label: 'Status', href: '/status' },
+  { label: 'Help Center', href: '/help-center' },
+  { label: 'Contact', href: '/help-center/contact' },
+  { label: 'Status', href: '/help-center/status' },
 ]
 
 export function SiteHeader() {

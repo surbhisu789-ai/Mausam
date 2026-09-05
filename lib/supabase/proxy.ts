@@ -32,8 +32,10 @@ export async function updateSession(request: NextRequest) {
     data: { user },
   } = await supabase.auth.getUser()
 
-  // Protect the dashboard: unauthenticated visitors are sent to the login page.
-  if (request.nextUrl.pathname.startsWith("/dashboard") && !user) {
+  const protectedPrefixes = ["/dashboard", "/alerts", "/map", "/tutorial", "/user-profile-and-setting"]
+  const isProtectedRoute = protectedPrefixes.some((prefix) => request.nextUrl.pathname.startsWith(prefix))
+
+  if (isProtectedRoute && !user) {
     const url = request.nextUrl.clone()
     url.pathname = "/login"
     return NextResponse.redirect(url)

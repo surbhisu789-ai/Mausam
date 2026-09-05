@@ -80,7 +80,7 @@ export default function HomePage() {
             {popular.map((a) => (
               <Link
                 key={a.slug}
-                href={`/articles/${a.slug}`}
+                href={`/help-center/articles/${a.slug}`}
                 className="group flex items-center justify-between gap-4 rounded-xl border border-border bg-card px-5 py-4 transition-colors hover:border-primary/40"
               >
                 <span className="min-w-0">
