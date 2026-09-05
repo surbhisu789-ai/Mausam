@@ -1,6 +1,5 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
 import { useEffect, useMemo, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import {
@@ -62,6 +61,11 @@ const navItems: { id: Section; label: string; icon: typeof UserRound }[] = [
   { id: 'account', label: 'Account', icon: ShieldCheck },
 ]
 
+async function signOut() {
+  await createClient().auth.signOut()
+  window.location.assign('/login')
+}
+
 export default function Page() {
   const [section, setSection] = useState<Section>('profile')
   const [settings, setSettings] = useState(initialSettings)
@@ -70,12 +74,6 @@ export default function Page() {
   const [saved, setSaved] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const router = useRouter()
-
-  async function signOut() {
-    await createClient().auth.signOut()
-    router.replace('/login')
-    router.refresh()
-  }
 
   useEffect(() => {
     const stored = window.localStorage.getItem('mausam-settings')
